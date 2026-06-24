@@ -49,7 +49,8 @@ class MovieListSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ("id", "title", "description", "duration", "genres", "actors")
 
-    def get_actors(self, obj):
+    @classmethod
+    def get_actors(cls, obj: Movie) -> list[str]:
         return [actor.full_name for actor in obj.actors.all()]
 
 
